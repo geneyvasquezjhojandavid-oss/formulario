@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registro de usuarios</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="fm.css">
+</head>
+<body>
+
+  <!-- Formulario 1: inicio de sesión -->
+  <main id="login" class="login">
+    <form id="form-login" class="tarjeta login-card">
+      <h1>Registro de usuarios</h1>
+      <p class="sub">Ingresa con el usuario de Supabase para administrar la tabla.</p>
+      <label>Correo <input name="email" type="email" required autocomplete="username"></label>
+      <label>Contraseña <input name="password" type="password" required autocomplete="current-password"></label>
+      <button class="btn" type="submit">Iniciar sesión</button>
+      <p id="error-login" class="error" role="alert" hidden></p>
+      <p id="aviso-demo" class="demo" hidden>Modo demo: los datos se guardan solo en este navegador. Conecta Supabase en <code>js/config.js</code>.</p>
+    </form>
+  </main>
+
+  <!-- Formulario 2: gestión de usuarios -->
+  <div id="app" hidden>
+    <header class="barra-sup">
+      <h1>Registro de usuarios</h1>
+      <button id="salir" class="link">Cerrar sesión</button>
+    </header>
+
+    <main class="contenido">
+      <section class="tarjeta">
+        <h2 id="titulo-form">Nuevo usuario</h2>
+        <form id="form-usuario" class="form" autocomplete="off">
+          <label>Nombre <input name="nombre" required></label>
+          <label>Dirección <input name="direccion"></label>
+          <label>Teléfono <input name="telefono" type="tel" pattern="[0-9+ ()-]{7,20}" title="Solo números, entre 7 y 20 dígitos"></label>
+          <label>Correo <input name="correo" type="email"></label>
+          <label>Cargo <input name="cargo"></label>
+          <label>Usuario <input name="usuario" required minlength="3"></label>
+          <label>Clave de acceso <input name="clave" type="password" id="clave" minlength="6" autocomplete="new-password"></label>
+          <div class="acciones">
+            <button id="cancelar" class="btn sec" type="button" hidden>Cancelar</button>
+            <button id="guardar" class="btn" type="submit">Registrar</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="tarjeta">
+        <div class="cabecera-lista">
+          <h2>Usuarios registrados</h2>
+          <span id="contador" class="sub"></span>
+        </div>
+        <label class="buscador">Buscar
+          <input id="buscar" type="search" placeholder="Nombre, usuario, correo, cargo o teléfono">
+        </label>
+        <p id="aviso" class="error" role="alert" hidden></p>
+        <div class="tabla-wrap">
+          <table>
+            <thead><tr><th>Nombre</th><th>Dirección</th><th>Teléfono</th><th>Correo</th><th>Cargo</th><th>Usuario</th><th></th></tr></thead>
+            <tbody id="tabla"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" role="status"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+  <script src="confi.js"></script>
+  <script src="db.js"></script>
+  <script src="ap.js"></script>
+</body>
+</html>
